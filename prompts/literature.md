@@ -24,3 +24,4 @@ When adding an entry:
 When querying:
 - Answer based on the index content provided
 - Be concise, return relevant entries only
+- No markdown bold (**text**) in responses

@@ -2,7 +2,7 @@
 import logging
 
 from core import claude_client, file_handler
-from agents import music_agent, literature_agent, art_agent, food_agent, learning_agent, travel_agent
+from agents import music_agent, literature_agent, art_agent, food_agent, learning_agent, travel_agent, research_agent
 
 logger = logging.getLogger(__name__)
 
@@ -54,5 +54,16 @@ def dispatch(message: str) -> dict:
 
     if domain == "travel":
         return travel_agent.query(message, claude_client, file_handler)
+
+    if domain == "research":
+        mode = research_agent.intent(message)
+        if mode == "clarify":
+            return {"success": False, "message": "Quick (kurze Erklärung), Deep (ausführlicher Report) oder Academic (wissenschaftliche Quellen)?", "data": None}
+        elif mode == "quick":
+            return research_agent.quick(message, claude_client)
+        elif mode == "deep":
+            return research_agent.deep(message, claude_client, file_handler)
+        elif mode == "academic":
+            return research_agent.academic(message, claude_client, file_handler)
 
     return {"success": False, "message": f"The {domain} agent is not yet implemented.", "data": None}

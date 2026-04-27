@@ -19,3 +19,4 @@ QUERY MODE — triggered by "Suggest topics:" prefix:
 - Suggest 2–3 relevant topics based on the user's mood or request
 - Be concise: one line per suggestion, include complexity
 - Do not return JSON in query mode, return plain text only
+- Keep all responses under 3 sentences. No bullet points. No headers. No markdown bold (**text**).

@@ -5,7 +5,12 @@ from datetime import date
 
 logger = logging.getLogger(__name__)
 
-_QUERY_PATTERNS = ["show", "list", "find", "search", "what", "which", "query", "tell me", "how many", "recommend"]
+_QUERY_PATTERNS = [
+    # English patterns
+    "show", "list", "find", "search", "what", "which", "query", "tell me", "how many", "recommend",
+    # German patterns
+    "gib mir", "zeig", "was kann ich", "suche", "finde", "empfiehl", "vorschlagen"
+]
 
 
 def intent(message: str) -> str:
@@ -27,8 +32,8 @@ def add_entry(message: str, claude_client, file_handler) -> dict:
     try:
         entry = json.loads(clean)
     except json.JSONDecodeError:
-        logger.error("Unparseable response: %r", response)
-        return {"success": False, "message": "Couldn't parse the response. Try rephrasing.", "data": None}
+        logger.error("JSON parse failed, returning raw response: %r", response)
+        return {"success": True, "message": response, "data": None}
 
     if entry.get("confidence") == "low":
         return {"success": False, "message": "Clarify: epoch or medium is unclear for this entry.", "data": None}

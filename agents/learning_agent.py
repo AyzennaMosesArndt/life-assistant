@@ -33,8 +33,8 @@ def add_entry(message: str, claude_client, file_handler) -> dict:
     try:
         entry = json.loads(clean)
     except json.JSONDecodeError:
-        logger.error("Unparseable response: %r", response)
-        return {"success": False, "message": "Couldn't parse the response. Try rephrasing.", "data": None}
+        logger.error("JSON parse failed, returning raw response: %r", response)
+        return {"success": True, "message": response, "data": None}
 
     if entry.get("confidence") == "low":
         return {"success": False, "message": "Clarify: the topic is unclear.", "data": None}

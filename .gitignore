@@ -13,3 +13,6 @@ running/exports/
 
 # Personal files
 prompts/master.md
+
+# Runtime files
+bot.lock
