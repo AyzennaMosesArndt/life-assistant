@@ -1,0 +1,15 @@
+# Environment and credentials
+.env
+*_creds.txt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Data exports
+running/exports/
+
+# Personal files
+prompts/master.md

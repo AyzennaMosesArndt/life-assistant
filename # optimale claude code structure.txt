@@ -1,0 +1,24 @@
+# optimale claude code structure
+
+CLAUDE.md
+CLAUDE.local.md
+.mcp.json
+.claude/
+--settings.json
+--settings.local.json
+--rules/
+----code-style.md
+----testing.md
+----api-conventions.md
+--commands/
+----review.md
+----fix-issue.md
+--skills/
+----deploy/
+------SKILL.md
+------deploy-config.md
+--agents/
+----code-Reviewer.md
+----security-auditor.md
+--hooks/
+----validate-bash.sh
